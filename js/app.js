@@ -10,4 +10,21 @@ requirejs.config({
   }
 });
 
-requirejs(["zombieapp/main"]);
+requirejs(["jquery","zombieapp/translate","bootstrap"], function($,translate) {
+  var text = "";
+  var this_translator = new translate();
+  $(function () {
+    $('#zombie-to-english-btn').click(function (event) {
+      text = $("#zombie").val();
+      this_translator.translateToEnglish(text);
+      return false;
+    });
+
+    $('#english-to-zombie-btn').click(function (event) {
+      text = $("#english").val();
+      outputtext = this_translator.translateToZombie(text);
+      $("#translation_output").html(outputtext);
+      return false;
+    });
+  });
+});
