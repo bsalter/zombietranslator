@@ -46,6 +46,13 @@ define([], function() {
         return text;
     };
 
+    translate.prototype.translateBork = function(text, targetlanguage) {
+    // These are Swedish Chef zombies.
+    // . is translated into "Bork." ! is translated into "Bork Bork Bork!"
+        text = (targetlanguage === "zombie") ? text = text.replace(/([a-zA-Z])\./g, "$1Bork.") : text = text.replace(/Bork\./g, ".");
+        text = (targetlanguage === "zombie") ? text = text.replace(/([a-zA-Z])\!/g, "$1Bork Bork Bork!") : text = text.replace(/Bork Bork Bork\!/g, "!");
+        return text;
+    }
     translate.prototype.translateToZombie = function(text) {
         return this.translate(text, "zombie")
     };
@@ -53,19 +60,24 @@ define([], function() {
     translate.prototype.translateToEnglish = function(text) {
         return this.translate(text, "english")
     };
+
     translate.prototype.translate = function(text, language) {
         if(language === "zombie") {
             text = this.translateR(text, language);
+        } else if (language === "english") {
+            text = this.translateBork(text, language);
         }
-        text = this.translateendR(text,language);
-        text = this.translateU(text,language);
-        text = this.translateO(text,language);
-        text = this.translateI(text,language);
+        text = this.translateendR(text, language);
+        text = this.translateU(text, language);
+        text = this.translateO(text, language);
+        text = this.translateI(text, language);
         text = this.translateE(text, language);
-        text = this.translateA(text,language);
+        text = this.translateA(text, language);
         text = this.translateCapitalize(text);
         if(language === "english") {
             text = this.translateR(text, language);
+        } else if(language === "zombie") {
+            text = this.translateBork(text, language);
         }
         return text;
     };
