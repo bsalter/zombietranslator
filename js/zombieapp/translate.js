@@ -3,39 +3,39 @@ define([], function() {
     translate.prototype.translateE = function(text, targetlanguage) {
     // "e" or "E" is replaced by "rr"
     // Translation from zombie->english doesn't handle capital E very well, due to ambiguity with 'r' translation
-        text = (targetlanguage === "zombie") ? text = text.replace(/e/ig, "rr") : text = text.replace(/rr/g, "e");
+        text = (targetlanguage === "zombie") ? text.replace(/e/ig, "rr") : text.replace(/rr/g, "e");
         return text;
     };
     translate.prototype.translateI = function(text, targetlanguage) {
     // "i" or "I" is replaced by "rrRr"
-        text = (targetlanguage === "zombie") ? text = text.replace(/i/ig, "rrRr") : text = text.replace(/[rR]rRr/g, "i");
+        text = (targetlanguage === "zombie") ? text.replace(/i/ig, "rrRr") : text.replace(/[rR]rRr/g, "i");
         return text;
     };
     translate.prototype.translateO = function(text, targetlanguage) {
     // "o" or "O" is replaced by "rrrRr"
-        text = (targetlanguage === "zombie") ? text = text.replace(/o/ig, "rrrRr") : text = text.replace(/[rR]rrRr/g, "o");
+        text = (targetlanguage === "zombie") ? text.replace(/o/ig, "rrrRr") : text.replace(/[rR]rrRr/g, "o");
         return text;
     };
     translate.prototype.translateU = function(text, targetlanguage) {
     // "u" or "U" is replaced by "rrrrRr"
-        text = (targetlanguage === "zombie") ? text = text.replace(/u/ig, "rrrrRr") : text = text.replace(/[rR]rrrRr/g, "u");
+        text = (targetlanguage === "zombie") ? text.replace(/u/ig, "rrrrRr") : text.replace(/[rR]rrrRr/g, "u");
         return text;
     };
     translate.prototype.translateR = function(text, targetlanguage) {
     // "r" or "R' is replaced by "RR"
-        text = (targetlanguage === "zombie") ? text = text.replace(/r(\S)/ig, "RR$1") : text = text.replace(/RR/g, "r");
+        text = (targetlanguage === "zombie") ? text.replace(/r(\S)/ig, "RR$1") : text.replace(/RR/g, "r");
         return text;
     };
     translate.prototype.translateA = function(text, targetlanguage) {
     // an "a" or "A" by itself will be replaced with "hra".
-        text = (targetlanguage === "zombie") ? text = text.replace(/\sa\s/ig, "hra") : text = text.replace(/\shra\s/g, "a");
+        text = (targetlanguage === "zombie") ? text.replace(/\sa\s/ig, " hra ") : text.replace(/\shra\s/g, " a ");
         return text;
     };
     translate.prototype.translateendR = function(text, targetlanguage) {
     // lower-case "r" at the end of words replaced with "rh".
-        text = (targetlanguage === "zombie") ? text = text.replace(/r([.?!\s])/g, "rh$1") : text = text.replace(/rh([.?!\s])/g, "r$1");
+        text = (targetlanguage === "zombie") ? text.replace(/r([.?!\s])/g, "rh$1") : text.replace(/rh([.?!\s])/g, "r$1");
         // there might be a better way to do this, but I couldn't find one - $ doesn't match end of string in []
-        text = (targetlanguage === "zombie") ? text = text.replace(/r$/g, "rh") : text = text.replace(/rh$/ig, "r");
+        text = (targetlanguage === "zombie") ? text.replace(/r$/g, "rh") : text.replace(/rh$/ig, "r");
         return text;
     };
     translate.prototype.translateCapitalize = function(text) {
@@ -48,11 +48,19 @@ define([], function() {
 
     translate.prototype.translateBork = function(text, targetlanguage) {
     // These are Swedish Chef zombies.
-    // . is translated into "Bork." ! is translated into "Bork Bork Bork!"
-        text = (targetlanguage === "zombie") ? text = text.replace(/([a-zA-Z])\./g, "$1Bork.") : text = text.replace(/Bork\./g, ".");
-        text = (targetlanguage === "zombie") ? text = text.replace(/([a-zA-Z])\!/g, "$1Bork Bork Bork!") : text = text.replace(/Bork Bork Bork\!/g, "!");
+    // A word character followed by . is translated into "Bork."
+    // A word character followed by ! is translated into "Bork Bork Bork!"
+        text = (targetlanguage === "zombie") ? text.replace(/([a-zA-Z])\./g, "$1Bork.") : text.replace(/Bork\./g, ".");
+        text = (targetlanguage === "zombie") ? text.replace(/([a-zA-Z])\!/g, "$1Bork Bork Bork!") : text.replace(/Bork Bork Bork\!/g, "!");
         return text;
-    }
+    };
+
+    translate.prototype.translateFrog = function(text) {
+    // The Swedish Chef zombies hate Kermit, and any mention of Kermit or frogs throws them into a rage
+    // and temporarily reverts their language back to original Swedish Chef
+        return(text.match(/frog/ig) || text.match(/Kermit/g));
+    };
+
     translate.prototype.translateToZombie = function(text) {
         return this.translate(text, "zombie")
     };
@@ -62,6 +70,10 @@ define([], function() {
     };
 
     translate.prototype.translate = function(text, language) {
+        if(this.translateFrog(text)) {
+            return { translation: "KILL FROOOGGY",
+                     frog: true };
+        }
         if(language === "zombie") {
             text = this.translateR(text, language);
         } else if (language === "english") {
@@ -79,7 +91,8 @@ define([], function() {
         } else if(language === "zombie") {
             text = this.translateBork(text, language);
         }
-        return text;
+        return { translation: text,
+                 frog: false };
     };
     return translate;
     }
