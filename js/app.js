@@ -16,7 +16,8 @@ requirejs(["jquery","zombieapp/translate","bootstrap"], function($,translate) {
   $(function () {
     $('#zombie-to-english-btn').click(function (event) {
       text = $("#zombie").val();
-      this_translator.translateToEnglish(text);
+      outputtext = this_translator.translateToEnglish(text);
+      $("#translation_output").html(outputtext);
       return false;
     });
 
