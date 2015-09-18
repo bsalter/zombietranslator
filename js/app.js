@@ -10,32 +10,9 @@ requirejs.config({
   }
 });
 
-requirejs(["jquery","zombieapp/translate","bootstrap"], function($,translate) {
-  var text = "";
-  var this_translator = new translate();
+requirejs(["jquery","zombieapp/zombieView","bootstrap"], function($,ZombieView) {
   $(function () {
-    $('#zombie-to-english-btn').click(function (event) {
-      text = $("#zombie").val();
-      output = this_translator.translateToEnglish(text);
-      $("#translation_output").html(output.translation);
-      return false;
-    });
-
-    $('#english-to-zombie-btn').click(function (event) {
-      text = $("#english").val();
-      output = this_translator.translateToZombie(text);
-      if(output.frog) {
-        $('#zombieimage').fadeOut(600, function() {
-          $(this).fadeIn(600)[0].src = "images/dead-kermit.jpg";
-          setTimeout(function() {
-            $('#zombieimage').fadeOut(600, function() {
-              $(this).fadeIn(600)[0].src = "images/zombie-swedish-chef-muppets.jpg";
-            })
-          }, 10000);
-        });
-      }
-      $("#translation_output").html(output.translation);
-      return false;
-    });
+    var text = "";
+    var this_zombieview = new ZombieView();
   });
 });
