@@ -2,7 +2,7 @@
 define(['jquery','zombieapp/Translate'], function($,Translate) {
     var ZombieController = function() {
         this.text = "";
-        this.translator = new Translate();
+        this.translator = new Translate(); // instantiate translation service
         this.zombielistener();
         this.englishlistener();
     };
