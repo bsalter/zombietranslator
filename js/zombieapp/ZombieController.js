@@ -1,12 +1,13 @@
+// Controller for Zombie translator app
 define(['jquery','zombieapp/Translate'], function($,Translate) {
-    var ZombieView = function() {
+    var ZombieController = function() {
         this.text = "";
         this.translator = new Translate();
         this.zombielistener();
         this.englishlistener();
     };
 
-    ZombieView.prototype.zombielistener = function() {
+    ZombieController.prototype.zombielistener = function() {
         var that = this;
         $('#zombie-to-english-btn').click(function (event) {
             that.text = $("#zombie").val();
@@ -16,7 +17,7 @@ define(['jquery','zombieapp/Translate'], function($,Translate) {
         });
     };
 
-    ZombieView.prototype.englishlistener = function() {
+    ZombieController.prototype.englishlistener = function() {
         var that = this;
         $('#english-to-zombie-btn').click(function (event) {
             that.text = $("#english").val();
@@ -35,5 +36,5 @@ define(['jquery','zombieapp/Translate'], function($,Translate) {
             return false;
         });
     };
-    return ZombieView;
+    return ZombieController;
 });

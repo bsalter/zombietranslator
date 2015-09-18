@@ -10,9 +10,8 @@ requirejs.config({
   }
 });
 
-requirejs(["jquery","zombieapp/zombieView","bootstrap"], function($,ZombieView) {
+requirejs(["jquery","zombieapp/ZombieController","bootstrap"], function($,ZombieController) {
   $(function () {
-    var text = "";
-    var this_zombieview = new ZombieView();
+    var this_zombiecontroller = new ZombieController(); // load controller
   });
 });

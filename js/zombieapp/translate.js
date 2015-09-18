@@ -1,3 +1,4 @@
+// Translation service for Zombie translator app
 define([], function() {
     var Translate = function() {};
     Translate.prototype.translateE = function(text, targetlanguage) {
