@@ -1,5 +1,5 @@
 // Controller for Zombie translator app
-define(['jquery','zombieapp/Translate'], function($,Translate) {
+define(['jquery','Translate'], function($,Translate) {
     var ZombieController = function() {
         this.text = "";
         this.translator = new Translate(); // instantiate translation service
