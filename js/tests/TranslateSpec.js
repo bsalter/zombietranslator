@@ -1,11 +1,18 @@
 define(['Translate'], function(Translate) {
     var translate = new Translate();
     describe('Translate', function() {
-        beforeEach(function() {
-            translate = new Translate();
-        });
         describe('translate', function() {
-
+            it('should translate into zombie', function() {
+                expect(translate.translate('A sentence to test.','zombie').translation).
+                    toEqual('A srrntrrncrr trrrRr trrst Bork.');
+            });
+            it('should translate into english', function() {
+                expect(translate.translate('A srrntrrncrr trrrRr trrst Bork.','english').translation).
+                    toEqual('A sentence to test.');
+            });
+            it('should return parameter frog=true if frogs are mentioned', function() {
+                expect(translate.translate('A frog is mentioned').frog).toBeTruthy();
+            })
         });
         describe('translateE', function() {
             it('should translate e or E to rr', function() {
