@@ -2,22 +2,26 @@ define(['Translate'], function(Translate) {
     var translate = new Translate();
     describe('Translate', function() {
         describe('translate', function() {
-            it('should translate into zombie', function() {
-                expect(translate.translate('A sentence to test.','zombie').translation).
-                    toEqual('A srrntrrncrr trrrRr trrst Bork.');
+            it('should translate into zombie, applying all rules', function() {
+                expect(translate.translate('a sentence to test!','zombie').translation).
+                    toEqual('A srrntrrncrr trrrRr trrst Bork Bork Bork!');
             });
-            it('should translate into english', function() {
+            it('should translate into english, applying all rules', function() {
                 expect(translate.translate('A srrntrrncrr trrrRr trrst Bork.','english').translation).
                     toEqual('A sentence to test.');
             });
             it('should return parameter frog=true if frogs are mentioned', function() {
                 expect(translate.translate('A frog is mentioned').frog).toBeTruthy();
-            })
+            });
         });
         describe('translateE', function() {
             it('should translate e or E to rr', function() {
                expect(translate.translateE('This is a tEst sentence','zombie')).
                    toEqual('This is a trrst srrntrrncrr');
+            });
+            it('should translate rr back to e', function() {
+                expect(translate.translateE('This is a trrst srrntrrncrr','english')).
+                    toEqual('This is a test sentence');
             });
         });
         describe('translateI', function() {
@@ -25,11 +29,19 @@ define(['Translate'], function(Translate) {
                 expect(translate.translateI('ThIs is a test sentence','zombie')).
                     toEqual('ThrrRrs rrRrs a test sentence');
             });
+            it('should translate rrRr back to i', function() {
+                expect(translate.translateI('ThrrRrs rrRrs a test sentence','english')).
+                    toEqual('This is a test sentence');
+            });
         });
         describe('translateO', function() {
             it('should translate o or O to rrrRr', function() {
                 expect(translate.translateO('ZOmbies like the letter o','zombie')).
                     toEqual('ZrrrRrmbies like the letter rrrRr');
+            });
+            it('should translate rrrRr back to o', function() {
+                expect(translate.translateO('ZrrrRrmbies like the letter rrrRr','english')).
+                    toEqual('Zombies like the letter o');
             });
         });
         describe('translateU', function() {
@@ -37,11 +49,19 @@ define(['Translate'], function(Translate) {
                 expect(translate.translateU('This translation should work Unquestioningly','zombie')).
                     toEqual('This translation shorrrrRrld work rrrrRrnqrrrrRrestioningly');
             });
+            it('should translate rrrrRr back to u', function() {
+                expect(translate.translateU('This translation shorrrrRrld work rrrrRrnqrrrrRrestioningly','english')).
+                    toEqual('This translation should work unquestioningly');
+            });
         });
         describe('translateR', function() {
             it('should translate r or R to RR except at end of word', function() {
                 expect(translate.translateR('HeRe is a good sentence for testing','zombie')).
                     toEqual('HeRRe is a good sentence for testing');
+            });
+            it('should translate RR back to r except at end of word', function() {
+                expect(translate.translateR('HeRRe is a good sentence for testing','english')).
+                    toEqual('Here is a good sentence for testing');
             });
         });
         describe('translateA', function() {
@@ -49,11 +69,19 @@ define(['Translate'], function(Translate) {
                 expect(translate.translateA('Here is a sentence to test A translator','zombie')).
                     toEqual('Here is hra sentence to test hra translator');
             });
+            it('should translate hra to a', function() {
+                expect(translate.translateA('Here is hra sentence to test hra translator','english')).
+                    toEqual('Here is a sentence to test a translator');
+            });
         });
         describe('translateendR', function() {
             it('should translate r at end of word to rh', function() {
                 expect(translate.translateendR('Here is our test sentenceR','zombie')).
                     toEqual('Here is ourh test sentenceR');
+            });
+            it('should translate rh back to r', function() {
+                expect(translate.translateendR('Here is ourh test sentenceR','english')).
+                    toEqual('Here is our test sentenceR');
             });
         });
         describe('translateCapitalize', function() {
