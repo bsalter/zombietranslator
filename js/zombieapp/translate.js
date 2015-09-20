@@ -23,7 +23,7 @@ define([], function() {
         return text;
     };
     Translate.prototype.translateR = function(text, targetlanguage) {
-    // "r" or "R' is replaced by "RR"
+    // "r" or "R" is replaced by "RR" except at end of word
         text = (targetlanguage === "zombie") ? text.replace(/r(\S)/ig, "RR$1") : text.replace(/RR/g, "r");
         return text;
     };
@@ -51,8 +51,8 @@ define([], function() {
     // These are Swedish Chef zombies.
     // A word character followed by . is translated into "Bork."
     // A word character followed by ! is translated into "Bork Bork Bork!"
-        text = (targetlanguage === "zombie") ? text.replace(/([a-zA-Z])\./g, "$1Bork.") : text.replace(/Bork\./g, ".");
-        text = (targetlanguage === "zombie") ? text.replace(/([a-zA-Z])\!/g, "$1Bork Bork Bork!") : text.replace(/Bork Bork Bork\!/g, "!");
+        text = (targetlanguage === "zombie") ? text.replace(/([a-zA-Z])\./g, "$1 Bork.") : text.replace(/\sBork\./g, ".");
+        text = (targetlanguage === "zombie") ? text.replace(/([a-zA-Z])\!/g, "$1 Bork Bork Bork!") : text.replace(/\sBork Bork Bork\!/g, "!");
         return text;
     };
 
