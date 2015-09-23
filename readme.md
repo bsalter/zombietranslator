@@ -10,6 +10,10 @@ Translates "." to "Bork."
 Translates "Kermit" or "frog" (case insensitive) to a murderous rage.
  (becomes "KILL FROOOGGY" and changes the view)
  
+Philosophy:
+ I used prototype pattern and implemented each rule as a separate function, for maximum extensibility. This makes it
+ possible to alter the translator if a branch of the zombie language evolves.
+ 
 Jasmine:
 I didn't quite follow the pattern for my implementation of expects, because the individual rules are so simple. I could
  not conceive of three expects for each that did not seem contrived. Instead, I wrote a full suite of tests against
