@@ -1,15 +1,18 @@
 // Controller for Zombie translator app
 define(['jquery','Translate'], function($,Translate) {
-    var ZombieController = function() {
+    var ZombieController = function(config) {
         this.text = "";
         this.translator = new Translate(); // instantiate translation service
+        this.config = config || {};
+        this.$englishToZombieBtn = this.config.englishToZombieBtn || $("#english-to-zombie-btn");
+        this.$zombieToEnglishBtn = this.config.zombieToEnglishBtn || $("#zombie-to-english-btn");
         this.zombielistener();
         this.englishlistener();
     };
 
     ZombieController.prototype.zombielistener = function() {
         var that = this;
-        $('#zombie-to-english-btn').click(function (event) {
+        this.$zombieToEnglishBtn.click(function (event) {
             that.text = $("#zombie").val();
             output = that.translator.translateToEnglish(that.text);
             $("#translation_output").html(output.translation);
@@ -19,7 +22,7 @@ define(['jquery','Translate'], function($,Translate) {
 
     ZombieController.prototype.englishlistener = function() {
         var that = this;
-        $('#english-to-zombie-btn').click(function (event) {
+        this.$englishToZombieBtn.click(function (event) {
             that.text = $("#english").val();
             output = that.translator.translateToZombie(that.text);
             if(output.frog) {

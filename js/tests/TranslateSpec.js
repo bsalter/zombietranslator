@@ -1,6 +1,9 @@
 define(['Translate'], function(Translate) {
     var translate = new Translate();
     describe('Translate', function() {
+        it('should be an object', function() {
+            expect(translate).toEqual(jasmine.any(Object));
+        });
         describe('translate', function() {
             it('should translate into zombie, applying all rules', function() {
                 expect(translate.translate('a sentence to test!','zombie').translation).
@@ -13,11 +16,20 @@ define(['Translate'], function(Translate) {
             it('should return parameter frog=true if frogs are mentioned', function() {
                 expect(translate.translate('A frog is mentioned').frog).toBeTruthy();
             });
+            it('should translate null to null', function() {
+                expect(translate.translate(null).translation).toBeNull();
+            });
+            it('should translate undefined to undefined',function() {
+                expect(translate.translate(undefined).translation).toBeUndefined();
+            });
+            it('should translate a plain number to that same number', function() {
+                expect(translate.translate(3).translation).toEqual(3);
+            });
         });
         describe('translateE', function() {
             it('should translate e or E to rr', function() {
                expect(translate.translateE('This is a tEst sentence','zombie')).
-                   toEqual('This is a trrst srrntrrncrr');
+                    toEqual('This is a trrst srrntrrncrr');
             });
             it('should translate rr back to e', function() {
                 expect(translate.translateE('This is a trrst srrntrrncrr','english')).
@@ -92,8 +104,10 @@ define(['Translate'], function(Translate) {
         });
         describe('translateBork', function() {
             it('should translate . and ! to Bork and Bork Bork Bork!, respectively', function() {
-                expect(translate.translateBork('Try this. Sentence!','zombie')).
-                    toEqual('Try this Bork. Sentence Bork Bork Bork!');
+                expect(translate.translateBork('Try this sentence!','zombie')).
+                    toMatch(/Bork Bork Bork\!/);
+                expect(translate.translateBork('Try this sentence.','zombie')).
+                    toMatch(/Bork./);
             });
         });
         describe('translateFrog', function() {
