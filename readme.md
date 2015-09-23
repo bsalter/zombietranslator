@@ -16,41 +16,42 @@ I didn't quite follow the pattern for my implementation of expects, because the 
  all translation logic, as well as the controller logic for the app. This resulted in 39 expects, and 33 specs. Rules
  are located in the tests/TranslateSpec & ZombieControllerSpec.
 
-1. Expects translate to be an object.
-2. Expects translate to translate zombie->english
-3. Expects translate to translate english->zombie
-4. Expects parameter frog = true if frogs are mentioned
-5. Expects parameter frog to be falsy if frogs are not mentioned
-6. Expects translate to translate null to null
-7. Expects translate to translate undefined to undefined
-8. Expects translate to translate a number to that same number
-9. Expects translate to translate e or E to rr
-10. Expects translate to translate rr back to e
-11. Expects translate to translate i or I to rrRr
-12. Expects translate to translate rrRr back to i
-13. Expects translate to translate o or O to rrrRr
-14. Expects translate to translate rrrRr back to o
-15. Expects translate to translate u or U to rrrrRr
-16. Expects translate to translate rrrrRr back to u
-17. Expects translate to translate r or R to RR except at end of word
-18. Expects translate to translate RR back to r except at end of word
-19. Expects translate to translate a or A to hra
-20. Expects translate to translate hra to a
-21. Expects translate to translate r at end of word to rh
-22. Expects translate to translate rh back to r
-23. Expects translate to capitalize the first letter of sentences
-24. Expects translate . and ! to Bork and Bork Bork Bork!, respectively
-25. Expects translate frog checking rule to return true for frog or Frog or Kermit, false if not
-26. Expects translate to call the zombie translate function with language = zombie
-27. Expects translate to call the english translate function with language = english
-28. Expects zombieController to call translator.translateToZombie when translate to Zombie button clicked
-29. Expects zombieController to call translator.translateToZombie with input text when translate to Zombie button clicked
-30. Expects zombieController to call translator.translateToEnglish when translate to English button clicked
-31. Expects zombieController to call translator.translateToEnglish with input text when translate to English button clicked
-32. I also added all of the example translation rules on the assignment page
+* Expects translate to be an object.
+* Expects translate to translate zombie->english
+* Expects translate to translate english->zombie
+* Expects parameter frog = true if frogs are mentioned
+* Expects parameter frog to be falsy if frogs are not mentioned
+* Expects translate to translate null to null
+* Expects translate to translate undefined to undefined
+* Expects translate to translate a number to that same number
+* Expects translate to translate e or E to rr
+* Expects translate to translate rr back to e
+* Expects translate to translate i or I to rrRr
+* Expects translate to translate rrRr back to i
+* Expects translate to translate o or O to rrrRr
+* Expects translate to translate rrrRr back to o
+* Expects translate to translate u or U to rrrrRr
+* Expects translate to translate rrrrRr back to u
+* Expects translate to translate r or R to RR except at end of word
+* Expects translate to translate RR back to r except at end of word
+* Expects translate to translate a or A to hra
+* Expects translate to translate hra to a
+* Expects translate to translate r at end of word to rh
+* Expects translate to translate rh back to r
+* Expects translate to capitalize the first letter of sentences
+* Expects translate . and ! to Bork and Bork Bork Bork!, respectively
+* Expects translate frog checking rule to return true for frog or Frog or Kermit, false if not
+* Expects translate to call the zombie translate function with language = zombie
+* Expects translate to call the english translate function with language = english
+* Expects zombieController to call translator.translateToZombie when translate to Zombie button clicked
+* Expects zombieController to call translator.translateToZombie with input text when translate to Zombie button clicked
+* Expects zombieController to call translator.translateToEnglish when translate to English button clicked
+* Expects zombieController to call translator.translateToEnglish with input text when translate to English button clicked
+* I also added all of the example translation rules on the assignment page
  
 Known issues:
- 1. As was pointed on the discussion board, "u" and "ei" translate to the same thing, which makes it impossible to 
+
+* As was pointed on the discussion board, "u" and "ei" translate to the same thing, which makes it impossible to 
 translate them back to English accurately.
- 2. I had some trouble translating capital E back to English from zombie, because it crashes into the r rule.
+* I had some trouble translating capital E back to English from zombie, because it crashes into the r rule.
  

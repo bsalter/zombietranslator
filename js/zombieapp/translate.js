@@ -92,18 +92,19 @@ define([], function() {
     };
 
     Translate.prototype.translateToZombie = function(text) {
-        return this.translate(text, "zombie")
+        return this.translate(text, "zombie"); // do translation to zombie, used by button click event
     };
 
     Translate.prototype.translateToEnglish = function(text) {
-        return this.translate(text, "english")
+        return this.translate(text, "english"); // do translation to English, used by button click event
     };
 
-    Translate.prototype.translate = function(text, language) {
-        if(this.translateFrog(text)) {
+    Translate.prototype.translate = function(text, language) { // main translation function
+        if(this.translateFrog(text)) { // handle froggies
             return { translation: "KILL FROOOGGY",
                      frog: true };
         }
+        // start calling all rules in order
         if(language === "zombie") {
             text = this.translateR(text, language);
         } else if (language === "english") {
