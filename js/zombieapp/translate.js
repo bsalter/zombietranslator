@@ -34,13 +34,16 @@ define([], function() {
     // "r" or "R" is replaced by "RR" except at end of word
         if(typeof text === "string") {
             text = (targetlanguage === "zombie") ? text.replace(/r(\S)/ig, "RR$1") : text.replace(/RR/g, "r");
+            if(targetlanguage === "zombie") { // a bit sloppy, but we need to translate double r
+                text = text.replace(/r(\S)/g, "RR$1");
+            }
         }
         return text;
     };
     Translate.prototype.translateA = function(text, targetlanguage) {
-    // an "a" or "A" by itself will be replaced with "hra".
+    // an "a" or "A" will be replaced with "hra".
         if(typeof text === "string") {
-            text = (targetlanguage === "zombie") ? text.replace(/\sa\s/ig, " hra ") : text.replace(/\shra\s/g, " a ");
+            text = (targetlanguage === "zombie") ? text.replace(/a/ig, "hra") : text.replace(/hra/g, "a");
         }
         return text;
     };

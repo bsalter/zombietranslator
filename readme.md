@@ -10,11 +10,11 @@ Translates "." to "Bork."
 Translates "Kermit" or "frog" (case insensitive) to a murderous rage.
  (becomes "KILL FROOOGGY" and changes the view)
  
-Expects:
+Jasmine:
 I didn't quite follow the pattern for my implementation of expects, because the individual rules are so simple. I could
  not conceive of three expects for each that did not seem contrived. Instead, I wrote a full suite of tests against
  all translation logic, as well as the controller logic for the app. This resulted in 39 expects, and 33 specs. Rules
- are located in the tests/TranslateSpec & ZombieControllerSpec
+ are located in the tests/TranslateSpec & ZombieControllerSpec.
 
 1. Expects translate to be an object.
 2. Expects translate to translate zombie->english
@@ -34,7 +34,7 @@ I didn't quite follow the pattern for my implementation of expects, because the 
 16. Expects translate to translate rrrrRr back to u
 17. Expects translate to translate r or R to RR except at end of word
 18. Expects translate to translate RR back to r except at end of word
-19. Expects translate to translate a or A by itself to hra
+19. Expects translate to translate a or A to hra
 20. Expects translate to translate hra to a
 21. Expects translate to translate r at end of word to rh
 22. Expects translate to translate rh back to r
@@ -47,6 +47,7 @@ I didn't quite follow the pattern for my implementation of expects, because the 
 29. Expects zombieController to call translator.translateToZombie with input text when translate to Zombie button clicked
 30. Expects zombieController to call translator.translateToEnglish when translate to English button clicked
 31. Expects zombieController to call translator.translateToEnglish with input text when translate to English button clicked
+32. I also added all of the example translation rules on the assignment page
  
 Known issues:
  1. As was pointed on the discussion board, "u" and "ei" translate to the same thing, which makes it impossible to 

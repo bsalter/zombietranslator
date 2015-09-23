@@ -7,7 +7,7 @@ define(['Translate'], function(Translate) {
         describe('translate', function() {
             it('should translate into zombie, applying all rules', function() {
                 expect(translate.translate('a sentence to test!','zombie').translation).
-                    toEqual('A srrntrrncrr trrrRr trrst Bork Bork Bork!');
+                    toEqual('Hra srrntrrncrr trrrRr trrst Bork Bork Bork!');
             });
             it('should translate into english, applying all rules', function() {
                 expect(translate.translate('A srrntrrncrr trrrRr trrst Bork.','english').translation).
@@ -27,6 +27,30 @@ define(['Translate'], function(Translate) {
             });
             it('should translate a plain number to that same number', function() {
                 expect(translate.translate(3).translation).toEqual(3);
+            });
+            it('should translate Terror to TrrRRRRrrrRrrh', function() {
+                expect(translate.translate('Terror','zombie').translation).
+                    toEqual('TrrRRRRrrrRrrh');
+            });
+            it('should translate JaZahn to JhraZhrahn', function() {
+                expect(translate.translate('JaZahn','zombie').translation).
+                    toEqual('JhraZhrahn');
+            });
+            it('should translate petty to prrtty', function() {
+               expect(translate.translate('petty','zombie').translation).
+                    toEqual('Prrtty');
+            });
+            it('should translate pretty to Prrtty', function() {
+                expect(translate.translate('pretty', 'zombie').translation).
+                    toEqual('PRRrrtty');
+            });
+            it('should translate brains to BRRhrarrRrns', function() {
+                expect(translate.translate('brains','zombie').translation).
+                    toEqual('BRRhrarrRrns');
+            });
+            it('should translate onomatopoeia to rrrRrnrrrRrmhratrrrRrprrrRrrrrrRrhra', function() {
+                expect(translate.translate('onomatopoeia','zombie').translation).
+                    toEqual('RrrRrnrrrRrmhratrrrRrprrrRrrrrrRrhra');
             });
         });
         describe('translateE', function() {
@@ -80,9 +104,9 @@ define(['Translate'], function(Translate) {
             });
         });
         describe('translateA', function() {
-            it('should translate a or A by itself to hra', function() {
+            it('should translate a or A to hra', function() {
                 expect(translate.translateA('Here is a sentence to test A translator','zombie')).
-                    toEqual('Here is hra sentence to test hra translator');
+                    toEqual('Here is hra sentence to test hra trhranslhrator');
             });
             it('should translate hra to a', function() {
                 expect(translate.translateA('Here is hra sentence to test hra translator','english')).
