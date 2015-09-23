@@ -28,7 +28,7 @@ define(['Translate'], function(Translate) {
         });
         describe('translateE', function() {
             it('should translate e or E to rr', function() {
-               expect(translate.translateE('This is a tEst sentence','zombie')).
+                expect(translate.translateE('This is a tEst sentence','zombie')).
                     toEqual('This is a trrst srrntrrncrr');
             });
             it('should translate rr back to e', function() {
@@ -107,7 +107,7 @@ define(['Translate'], function(Translate) {
                 expect(translate.translateBork('Try this sentence!','zombie')).
                     toMatch(/Bork Bork Bork\!/);
                 expect(translate.translateBork('Try this sentence.','zombie')).
-                    toMatch(/Bork./);
+                    toContain("Bork.");
             });
         });
         describe('translateFrog', function() {
