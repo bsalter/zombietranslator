@@ -16,6 +16,9 @@ define(['Translate'], function(Translate) {
             it('should return parameter frog=true if frogs are mentioned', function() {
                 expect(translate.translate('A frog is mentioned').frog).toBeTruthy();
             });
+            it('should be falsy if no frogs are mentioned', function() {
+                expect(translate.translate('No ribbiter is mentioned').frog).toBeFalsy();
+            });
             it('should translate null to null', function() {
                 expect(translate.translate(null).translation).toBeNull();
             });
