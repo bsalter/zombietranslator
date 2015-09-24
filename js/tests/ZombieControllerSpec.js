@@ -6,6 +6,9 @@ define(['jquery','ZombieController'], function($,ZombieController) {
     zombieText: $("<input type='text'></input>")
   });
   describe('ZombieController', function() {
+    it('should be an object', function() {
+      expect(zombieController).toEqual(jasmine.any(Object));
+    });
     describe('zombielistener', function() {
       it('should call translator.translateToZombie when translate to Zombie button clicked', function() {
         var translator = zombieController.translator;

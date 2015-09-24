@@ -17,10 +17,10 @@ Philosophy:
 Jasmine:
 I didn't quite follow the pattern for my implementation of expects, because the individual rules are so simple. I could
  not conceive of three expects for each that did not seem contrived. Instead, I wrote a full suite of tests against
- all translation logic, as well as the controller logic for the app. This resulted in 39 expects, and 33 specs. Rules
- are located in the tests/TranslateSpec & ZombieControllerSpec.
+ all translation logic, as well as the controller logic for the app. This resulted in 46 expects, and 40 specs. Rules
+ are located in the tests/TranslateSpec & ZombieControllerSpec files.
 
-* Expects translate to be an object.
+* Expects translate to be an object
 * Expects translate to translate zombie->english
 * Expects translate to translate english->zombie
 * Expects parameter frog = true if frogs are mentioned
@@ -47,6 +47,7 @@ I didn't quite follow the pattern for my implementation of expects, because the 
 * Expects translate frog checking rule to return true for frog or Frog or Kermit, false if not
 * Expects translate to call the zombie translate function with language = zombie
 * Expects translate to call the english translate function with language = english
+* Expects zombieController to be an object
 * Expects zombieController to call translator.translateToZombie when translate to Zombie button clicked
 * Expects zombieController to call translator.translateToZombie with input text when translate to Zombie button clicked
 * Expects zombieController to call translator.translateToEnglish when translate to English button clicked
