@@ -1,4 +1,3 @@
-# Assignment 1: zombie translator
 ## Swedish Chef zombie mode
 
 ## Warning: do not mention frogs or Kermit to the Swedish Chef zombie.
